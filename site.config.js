@@ -1,6 +1,6 @@
 module.exports = {
   // Basic site information (required)
-  name: 'twan.dev',
+  name: 'Woying Blog',
   domain: 'twan.dev',
   url: 'https://twan.dev',
   description: 'Twan Kruiswijk personal blog about life, music, code and more.',

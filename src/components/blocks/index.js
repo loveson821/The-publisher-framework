@@ -1,11 +1,12 @@
 import TextRenderer from '@/components/blocks/TextRenderer';
-import { Heading } from '@chakra-ui/react';
+import { Heading, Box, Image } from '@chakra-ui/react';
 
 const Blocks = ({ blocks }) => {
   if (!blocks) {
     return <p>No blocks available</p>;
   }
 
+  // debugger;
   const supportedBlocks = blocks?.filter((p) => p.type !== 'unsupported');
 
   const renderBlocks = supportedBlocks.map((b) => {
@@ -62,6 +63,12 @@ const Blocks = ({ blocks }) => {
           <li key={b.id}>
             <TextRenderer content={b.numbered_list_item.text} plain />
           </li>
+        );
+      case 'image':
+        return ( 
+          <Box key={b.id}>
+            <Image src={b.image.file.url} />
+          </Box>
         );
       default:
         return (
