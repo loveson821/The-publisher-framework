@@ -1,9 +1,9 @@
 module.exports = {
   // Basic site information (required)
-  name: 'Woying Blog',
-  domain: 'twan.dev',
-  url: 'https://twan.dev',
-  description: 'Twan Kruiswijk personal blog about life, music, code and more.',
+  name: 'Stem Corner',
+  domain: 'stem-corners.com',
+  url: 'https://stem-corners.com',
+  description: 'STEM CORNER',
   fathomCode: 'TBSAIDMS',
 
   // SEO specific (optional)
@@ -23,41 +23,41 @@ module.exports = {
       url: '',
       icon: 'SiFacebook',
     },
-    {
-      name: 'Twitter',
-      url: 'https://twitter.com/twankrui',
-      icon: 'SiTwitter',
-    },
-    {
-      name: 'Instagram',
-      url: 'https://instagram.com/twankrui',
-      icon: 'SiInstagram',
-    },
-    {
-      name: 'LinkedIn',
-      url: 'https://www.linkedin.com/in/twan-kruiswijk-bb853a71/',
-      icon: 'SiLinkedin',
-    },
-    {
-      name: 'Youtube',
-      url: '',
-      icon: 'SiYoutube',
-    },
-    {
-      name: 'TikTok',
-      url: '',
-      icon: 'SiTiktok',
-    },
-    {
-      name: 'Medium',
-      url: '',
-      icon: 'SiMedium',
-    },
-    {
-      name: 'Twitch',
-      url: 'https://twitch.tv/twankrui',
-      icon: 'SiTwitch',
-    },
+    // {
+    //   name: 'Twitter',
+    //   url: 'https://twitter.com/twankrui',
+    //   icon: 'SiTwitter',
+    // },
+    // {
+    //   name: 'Instagram',
+    //   url: 'https://instagram.com/twankrui',
+    //   icon: 'SiInstagram',
+    // },
+    // {
+    //   name: 'LinkedIn',
+    //   url: 'https://www.linkedin.com/in/twan-kruiswijk-bb853a71/',
+    //   icon: 'SiLinkedin',
+    // },
+    // {
+    //   name: 'Youtube',
+    //   url: '',
+    //   icon: 'SiYoutube',
+    // },
+    // {
+    //   name: 'TikTok',
+    //   url: '',
+    //   icon: 'SiTiktok',
+    // },
+    // {
+    //   name: 'Medium',
+    //   url: '',
+    //   icon: 'SiMedium',
+    // },
+    // {
+    //   name: 'Twitch',
+    //   url: 'https://twitch.tv/twankrui',
+    //   icon: 'SiTwitch',
+    // },
   ],
 
   /* 

@@ -1,15 +1,17 @@
 import Head from 'next/head';
 import NextLink from 'next/link';
 import { getPosts, getReadings } from '@/lib/notion';
+import { getProjects } from '@/lib/stemcorner';
 import { Button, Box, Container, Flex, Heading } from '@chakra-ui/react';
 import { name, description, url, socialImage } from '@/lib/config';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
 import MainLayout from '@/layouts/MainLayout';
 import PostsList from '@/components/posts/PostsList';
+import ProjectsList from '@/components/projects/ProjectsList';
 import ReadingsList from '@/components/readings/ReadingsList';
 
-export default function Home({ posts, readings }) {
+export default function Home({ posts, readings, projects }) {
   return (
     <MainLayout>
       <Head>
@@ -25,12 +27,30 @@ export default function Home({ posts, readings }) {
         <Box mb={[12, 16]}>
           <Flex align="center" justify="space-between" px={[4, 8]} mb={6}>
             <Heading as="h2" fontSize="xl">
-              my thoughts
+              Projects
             </Heading>
           </Flex>
 
-          <PostsList posts={posts.slice(0, 6)} />
+          <ProjectsList projects={projects.slice(0,6)} />
+          <Flex justify="flex-end" mt={8}>
+            <NextLink href="/archive/projects" passHref>
+              <Button
+                as="a"
+                w={['100%', '100%', 'unset']}
+                rightIcon={<ChevronRightIcon />}
+                bg="#D04E4A"
+                color="white"
+                size="lg"
+                fontFamily="heading"
+                _active={{ backgroundColor: '#bb3531' }}
+                _hover={{ boxShadow: '2px 2px 0 #880400' }}
+              >
+                All projects
+              </Button>
+            </NextLink>
+          </Flex>
 
+          <PostsList posts={posts.slice(0, 6)} />
           <Flex justify="flex-end" mt={8}>
             <NextLink href="/archive/posts" passHref>
               <Button
@@ -50,7 +70,7 @@ export default function Home({ posts, readings }) {
           </Flex>
         </Box>
 
-        <Box>
+        {/* <Box>
           <Heading as="h2" fontSize="xl" px={[4, 8]} mb={6}>
             What I’m reading / watching
           </Heading>
@@ -74,7 +94,7 @@ export default function Home({ posts, readings }) {
               </Button>
             </NextLink>
           </Flex>
-        </Box>
+        </Box> */}
       </Container>
     </MainLayout>
   );
@@ -83,15 +103,16 @@ export default function Home({ posts, readings }) {
 export async function getStaticProps() {
   const posts = await getPosts();
   const readings = await getReadings();
+  const projects = await getProjects();
 
-  if (!posts || !readings) {
+  if (!posts || !readings || !projects) {
     return {
       notFound: true,
     };
   }
 
   return {
-    props: { posts: posts.data, readings: readings.data },
+    props: { posts: posts.data, readings: readings.data, projects: projects.data },
     revalidate: 10,
   };
 }
