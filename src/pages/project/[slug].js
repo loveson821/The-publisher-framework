@@ -26,7 +26,14 @@ export default function Project({ project }) {
   const slugContent = slug.rich_text[0].plain_text;
 
   const renderFeaturedImage = () => {
-    if (!pj_image || !pj_image.files || !pj_image.files[0]) {
+    // if (!pj_image || 
+    //   !pj_image.files || 
+    //   !pj_image.files[0] || 
+    //   !pj_image.files[0].file) {
+    //   return null;
+    // }
+
+    if (!pj_image?.files[0]?.file){
       return null;
     }
 
@@ -38,7 +45,7 @@ export default function Project({ project }) {
         borderRadius="lg"
       >
         <Image
-          src={pj_image.files[0].file.url}
+          src={pj_image.files[0].file?.url}
           alt={titleContent}
           layout="fill"
           objectFit="cover"

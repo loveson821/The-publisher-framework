@@ -27,30 +27,32 @@ export default function Home({ posts, readings, projects }) {
         <Box mb={[12, 16]}>
           <Flex align="center" justify="space-between" px={[4, 8]} mb={6}>
             <Heading as="h2" fontSize="xl">
-              Projects
+              參賽項目
             </Heading>
           </Flex>
 
-          <ProjectsList projects={projects.slice(0,6)} />
-          <Flex justify="flex-end" mt={8}>
-            <NextLink href="/archive/projects" passHref>
-              <Button
-                as="a"
-                w={['100%', '100%', 'unset']}
-                rightIcon={<ChevronRightIcon />}
-                bg="#D04E4A"
-                color="white"
-                size="lg"
-                fontFamily="heading"
-                _active={{ backgroundColor: '#bb3531' }}
-                _hover={{ boxShadow: '2px 2px 0 #880400' }}
-              >
-                All projects
-              </Button>
-            </NextLink>
-          </Flex>
+          <Box px={[4, 8]} mb={6}>
+            <ProjectsList projects={projects.slice(0,6)} />
+            <Flex justify="flex-end" mt={8}>
+              <NextLink href="/archive/projects" passHref>
+                <Button
+                  as="a"
+                  w={['100%', '100%', 'unset']}
+                  rightIcon={<ChevronRightIcon />}
+                  bg="#D04E4A"
+                  color="white"
+                  size="lg"
+                  fontFamily="heading"
+                  _active={{ backgroundColor: '#bb3531' }}
+                  _hover={{ boxShadow: '2px 2px 0 #880400' }}
+                >
+                  All projects
+                </Button>
+              </NextLink>
+            </Flex>
+          </Box>
 
-          <PostsList posts={posts.slice(0, 6)} />
+          {/* <PostsList posts={posts.slice(0, 6)} />
           <Flex justify="flex-end" mt={8}>
             <NextLink href="/archive/posts" passHref>
               <Button
@@ -67,7 +69,7 @@ export default function Home({ posts, readings, projects }) {
                 All posts
               </Button>
             </NextLink>
-          </Flex>
+          </Flex> */}
         </Box>
 
         {/* <Box>
