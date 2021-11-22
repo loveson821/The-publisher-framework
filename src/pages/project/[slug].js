@@ -1,7 +1,16 @@
 import Head from 'next/head';
-import Image from 'next/image';
+// import Image from 'next/image';
 import { getProjects, getProjectBySlug } from '@/lib/stemcorner';
-import { AspectRatio, Container, Heading } from '@chakra-ui/react';
+import { AspectRatio, Container, Heading, Box, Image } from '@chakra-ui/react';
+import { Wrap, WrapItem, Center } from '@chakra-ui/layout';
+import {
+  Tag,
+  TagLabel,
+  TagLeftIcon,
+  TagRightIcon,
+  TagCloseButton,
+} from "@chakra-ui/react";
+
 import { socialImage, url } from '@/lib/config';
 
 import MainLayout from '@/layouts/MainLayout';
@@ -10,14 +19,14 @@ import TextRenderer from 'components/blocks/TextRenderer';
 
 export default function Project({ project }) {
   const { pageInfo, blocks } = project;
-  const { pj_name, pj_id, tm_school, pj_image, tm_member, pj_intro, slug, pj_abstract, pj_proposal, tm_leader } = pageInfo.properties;
+  const { pj_name, pj_id, pj_concept, tm_school, pj_image, tm_member, pj_intro, slug, pj_abstract, pj_proposal, tm_leader } = pageInfo.properties;
 
   const titleContent = pj_name.title[0].text.content;
   const summaryContent = pj_intro.rich_text[0].text.content;
   const slugContent = slug.rich_text[0].plain_text;
 
   const renderFeaturedImage = () => {
-    if (!pj_image || !pj_image.url) {
+    if (!pj_image || !pj_image.files || !pj_image.files[0]) {
       return null;
     }
 
@@ -29,7 +38,7 @@ export default function Project({ project }) {
         borderRadius="lg"
       >
         <Image
-          src={pj_image.url}
+          src={pj_image.files[0].file.url}
           alt={titleContent}
           layout="fill"
           objectFit="cover"
@@ -54,24 +63,59 @@ export default function Project({ project }) {
         /> */}
       </Head>
 
-      <Container maxW="container.lg" mt={[8, 16]} mb={[8, 16]}>
+      <Container maxW="container.md" mt={[8, 16]} mb={[8, 16]}>
         <Heading
           as="h1"
-          mb={[4, 8, 16]}
+          mb={[4, 8, null]}
           fontSize={['2xl', '4xl', '5xl']}
-          px={[null, null, 16]}
+          // px={[null, null, 16]}
         >
           {titleContent}
         </Heading>
 
         {renderFeaturedImage()}
-        <TextRenderer content={pj_intro.rich_text} plain />
-        <TextRenderer content={tm_leader.rich_text} plain />
-        <ul>
-          {tm_member.multi_select.map((r) => (
-            <li key={r.name}>{r.name}</li>
-          ))}
-        </ul>
+
+        {/* 介紹 */}
+        <Box>
+          <Heading size="md">簡介</Heading>
+          <TextRenderer content={pj_intro.rich_text} plain />
+        </Box>
+
+        {/* School */}
+        <Box mt={4}>
+          <Heading size="md">學校</Heading>
+          <TextRenderer content={tm_school.rich_text} plain />
+        </Box>
+
+        {/* TM Leader */}
+        <Box mt={4}>
+          <Heading size="md">領隊</Heading>
+          <TextRenderer content={tm_leader.rich_text} plain />
+        </Box>
+
+        {/* TM MEMBER */}
+        <Box mt={4}>
+          <Heading size="md">學生</Heading>
+          <Wrap mt={4}>
+            {tm_member.multi_select.map((r) => (
+              <WrapItem key={r.name}>
+                <Tag>{r.name}</Tag>
+              </WrapItem>
+            ))}
+          </Wrap>
+        </Box>
+
+        {/* pj_abstract */}
+        <Box mt={4}>
+          <Heading size="md">摘要</Heading>
+          <TextRenderer content={pj_abstract.rich_text} plain />
+        </Box>
+        
+        {/* pj_concept */}
+        <Box mt={4}>
+          <Heading size="md">概念</Heading>
+          <TextRenderer content={pj_concept.rich_text} plain />
+        </Box>
       </Container>
 
       <Container maxW="container.md" px={[5, 6, 16]} pb={16}>
